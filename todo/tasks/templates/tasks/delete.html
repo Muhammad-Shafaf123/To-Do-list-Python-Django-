@@ -4,10 +4,12 @@
 
 	body{
 		background-color: #638CB8;
+		text-align: center;
 	}
 
 	input{
-		width: 100%;
+		width: auto;
+		text-align: center;
 		padding: 12px 20px;
 		margin: 8px 0;
 		box-sizing: border-box;
@@ -47,23 +49,13 @@
 
 </style>
 
-<div class ="center-column">
-	<form method="POST" action="/" >
-	{% csrf_token %}
-	{{form.title}}
-	<input class="btn btn-info" type="submit" name="Create Task">
-</form>
-{% for task in tasks %}
-  <div class="item-row">
-	  <a class="btn btn-sm btn-info" href="{% url 'update_task' task.id %}">Update</a>
-	  <a class="btn btn-sm btn-danger" href="{% url 'delete' task.id %}">Delete</a>
-	  
-	  {% if task.complete ==  True %}
-	  <strike>{{task}}</strike>
-	  {% else %}
-	  <span>{{ task }}</span>
+<h6>Are you sure you want to delete "{{item}}"?</h6>
 
-	  {% endif %}
-  </div>
-{% endfor %}
-</div>
+<a href="{% url 'list' %}">Cancel</a>
+
+<form method="POST" action="">
+	
+	{% csrf_token  %}
+	
+	<input type="submit" name="Confirm">
+</form>
